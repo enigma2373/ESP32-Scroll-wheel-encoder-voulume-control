@@ -3,7 +3,7 @@
 
 ; Map Media Keys to Specific Apps
 global App1 := "Spotify.exe"
-global App2 := "chrome.exe"
+global App2 := "firefox.exe"
 global App3 := "vlc.exe"
 
 ; Volume Up
