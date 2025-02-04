@@ -1,0 +1,38 @@
+#Persistent
+#UseHook
+
+; Map Media Keys to Specific Apps
+global App1 := "Spotify.exe"
+global App2 := "chrome.exe"
+global App3 := "vlc.exe"
+
+; Volume Up
+Media_Volume_Up::
+    SetAppVolume(App1, 5)
+    return
+
+Media_Next::
+    SetAppVolume(App2, 5)
+    return
+
+Media_Play_Pause::
+    SetAppVolume(App3, 5)
+    return
+
+; Volume Down
+Media_Volume_Down::
+    SetAppVolume(App1, -5)
+    return
+
+Media_Prev::
+    SetAppVolume(App2, -5)
+    return
+
+Media_Stop::
+    SetAppVolume(App3, -5)
+    return
+
+; Function to Adjust App Volume
+SetAppVolume(AppName, Step) {
+    Run, powershell -Command "$app = Get-Process | Where-Object { $_.ProcessName -match '$AppName' }; if ($app) { $vol = [Audio]::GetApplicationVolume($app.Id); [Audio]::SetApplicationVolume($app.Id, $vol + $Step) }",, Hide
+}
